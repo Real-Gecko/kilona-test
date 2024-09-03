@@ -1,0 +1,2 @@
+[tool.isort]
+float_to_top = true

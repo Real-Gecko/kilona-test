@@ -1,0 +1,30 @@
+volumes:
+  db_data:
+
+networks:
+  randomizer_net:
+
+services:
+  db:
+    image: postgres:16.4-alpine
+    restart: always
+    networks:
+      - randomizer_net
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    env_file:
+      - .env
+
+  grpc:
+    build: .
+    restart: always
+    depends_on:
+      - db
+    networks:
+      - randomizer_net
+    ports:
+      - 50051:50051
+    env_file:
+      - .env

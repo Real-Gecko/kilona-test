@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package randomizer;
+
+service Randomizer { rpc RandomNumber(AddRequest) returns (AddResponse); }
+
+message AddRequest {}
+
+message AddResponse { float result = 1; }
